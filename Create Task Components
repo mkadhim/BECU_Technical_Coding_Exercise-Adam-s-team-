@@ -1,0 +1,37 @@
+// src/components/TaskList.js
+import React from 'react';
+import TaskItem from './TaskItem';
+
+const TaskList = ({ tasks, toggleTaskStatus }) => (
+  <ul>
+    {tasks.map(task => (
+      <TaskItem key={task.id} task={task} toggleTaskStatus={toggleTaskStatus} />
+    ))}
+  </ul>
+);
+
+export default TaskList;
+
+// src/components/TaskItem.js
+import React from 'react';
+
+const TaskItem = ({ task, toggleTaskStatus }) => (
+  <li onClick={() => toggleTaskStatus(task.id)}>
+    {task.name} - {task.completed ? 'Completed' : 'Pending'}
+  </li>
+);
+
+export default TaskItem;
+
+// src/components/TaskFilter.js
+import React from 'react';
+
+const TaskFilter = ({ setFilter }) => (
+  <div>
+    <button onClick={() => setFilter('all')}>All</button>
+    <button onClick={() => setFilter('completed')}>Completed</button>
+    <button onClick={() => setFilter('pending')}>Pending</button>
+  </div>
+);
+
+export default TaskFilter;
